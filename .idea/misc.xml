@@ -3,8 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/@Work - Shubham/Shubham/PProjects/ScopedStorageAndroid/app/src/main/res/drawable/bottom_dark_background.xml" value="0.134" />
+        <entry key="..\:/@Work - Shubham/Shubham/PProjects/ScopedStorageAndroid/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.134" />
         <entry key="..\:/@Work - Shubham/Shubham/PProjects/ScopedStorageAndroid/app/src/main/res/drawable/ic_baseline_insert_photo_24.xml" value="0.134" />
         <entry key="..\:/@Work - Shubham/Shubham/PProjects/ScopedStorageAndroid/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/@Work - Shubham/Shubham/PProjects/ScopedStorageAndroid/app/src/main/res/layout/activity_main2.xml" value="0.20416666666666666" />
+        <entry key="..\:/@Work - Shubham/Shubham/PProjects/ScopedStorageAndroid/app/src/main/res/layout/activity_view_pager.xml" value="0.20416666666666666" />
+        <entry key="..\:/@Work - Shubham/Shubham/PProjects/ScopedStorageAndroid/app/src/main/res/layout/fragment_1.xml" value="0.20416666666666666" />
+        <entry key="..\:/@Work - Shubham/Shubham/PProjects/ScopedStorageAndroid/app/src/main/res/layout/fragment_internal_storage.xml" value="0.20416666666666666" />
+        <entry key="..\:/@Work - Shubham/Shubham/PProjects/ScopedStorageAndroid/app/src/main/res/layout/fragment_shared_storage.xml" value="0.20416666666666666" />
         <entry key="..\:/@Work - Shubham/Shubham/PProjects/ScopedStorageAndroid/app/src/main/res/layout/item_photo.xml" value="0.20416666666666666" />
       </map>
     </option>

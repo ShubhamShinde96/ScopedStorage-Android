@@ -1,27 +1,29 @@
 package com.shubham.scopedstorage_android.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintSet
-import androidx.databinding.DataBindingUtil
+import android.widget.ImageView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.shubham.scopedstorage_android.R
 import com.shubham.scopedstorage_android.data.SharedImage
-import com.shubham.scopedstorage_android.databinding.ItemPhotoBinding
+
 
 class SharedStorageImageAdapter(
     val onImageClick: (SharedImage) -> Unit
-): RecyclerView.Adapter<SharedStorageImageAdapter.ImageViewHolder>() {
+) : RecyclerView.Adapter<SharedStorageImageAdapter.ImageViewHolder>() {
 
-    private val callback = object: DiffUtil.ItemCallback<SharedImage>() {
+    private val callback = object : DiffUtil.ItemCallback<SharedImage>() {
         override fun areItemsTheSame(oldItem: SharedImage, newItem: SharedImage): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: SharedImage, newItem: SharedImage): Boolean {
-            return oldItem == newItem
+            return oldItem.name == newItem.name && oldItem.contentUri == newItem.contentUri
         }
     }
 
@@ -29,11 +31,17 @@ class SharedStorageImageAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
 
-        val layoutInflater = LayoutInflater.from(parent.context)
+        /*val layoutInflater = LayoutInflater.from(parent.context)
 
         val binding: ItemPhotoBinding = DataBindingUtil.inflate(layoutInflater, R.layout.item_photo, parent, false)
+//        val binding = ItemPhotoBinding.inflate(layoutInflater, parent, false)
 
-        return ImageViewHolder(binding)
+        return ImageViewHolder(binding)*/
+
+        val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
+        val listItem = layoutInflater.inflate(R.layout.item_photo, parent, false)
+
+        return ImageViewHolder(listItem)
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
@@ -41,31 +49,29 @@ class SharedStorageImageAdapter(
         holder.bind(differ.currentList[position])
 
     }
-
     override fun getItemCount(): Int = differ.currentList.size
 
-    inner class ImageViewHolder(private val binding: ItemPhotoBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ImageViewHolder(val view: View) :
+        RecyclerView.ViewHolder(view) {
+
+        val image = view.findViewById<ImageView>(R.id.ivPhoto)
 
         fun bind(sharedImage: SharedImage) {
 
-            binding.ivPhoto.setImageURI(sharedImage.contentUri)
+            Glide.with(image.context)
+                .load(differ.currentList[adapterPosition].contentUri)
+                .placeholder(R.drawable.img_placeholder)
+                .apply(RequestOptions().override(180, 180))
+                .into(image)
 
-            val aspectRatio = sharedImage.width.toFloat() / sharedImage.height.toFloat()
-            ConstraintSet().apply {
-                clone(binding.constraint)
-                setDimensionRatio(binding.ivPhoto.id, aspectRatio.toString())
-                applyTo(binding.constraint)
-            }
-
-            binding.ivPhoto.setOnLongClickListener {
+            /*binding.ivPhoto.setOnLongClickListener {
 
                 onImageClick(differ.currentList[adapterPosition])
                 true
-            }
+            }*/
 
         }
     }
-
 
 
 }
