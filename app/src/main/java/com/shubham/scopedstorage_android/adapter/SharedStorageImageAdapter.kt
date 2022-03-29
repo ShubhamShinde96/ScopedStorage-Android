@@ -64,11 +64,11 @@ class SharedStorageImageAdapter(
                 .apply(RequestOptions().override(180, 180))
                 .into(image)
 
-            /*binding.ivPhoto.setOnLongClickListener {
+            image.setOnLongClickListener {
 
                 onImageClick(differ.currentList[adapterPosition])
                 true
-            }*/
+            }
 
         }
     }
